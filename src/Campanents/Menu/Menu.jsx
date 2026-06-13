@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './Menu.css';
 
-// Rasmlaringizni import qismi
-import wawlik from '../../assets/wawlik.png';
+ import wawlik from '../../assets/wawlik.png';
 import klipartz from '../../assets/klipartz.png';
 import pitsa from '../../assets/pitsa.png';
  import burger from '../../assets/burger.png';
  import asartiy from '../../assets/asartiy.png';
  import lavash from '../../assets/lavash.png';
+import stek from '../../assets/stek.png';
+import video from '../../assets/Video.png';
+
 
 
 
@@ -169,7 +171,6 @@ const Menu = () => {
           {[1, 2, 3].map((item) => (
             <div className="testimony-card" key={item}>
               <div className="testimony-header">
-                 <img src={`/src/assets/client-${item}.png`} alt="Client" className="client-avatar" />
                 <div className="client-info">
                   <h4>Maria</h4>
                   <span>Chef / Food Critic</span>
@@ -200,7 +201,7 @@ const Menu = () => {
           {[1, 2, 3].map((item) => (
             <div className="news-card animate-card" key={item}>
               <div className="news-img-wrapper">
-                 <img src={`/src/assets/news-${item}.png`} alt="News Grill" className="news-img" />
+                 <img src={stek} alt="News Grill" className="news-img" />
               </div>
               <div className="news-content">
                 <h3 className="news-card-title">Tips For Prepping And Caring For Your Grill</h3>
@@ -224,7 +225,7 @@ const Menu = () => {
 
        <section className="restaurant-video-section">
         <div className="video-overlay">
-           <img src="/src/assets/interior.jpg" alt="Restaurant Interior" className="video-bg-img" />
+           <img src={video} alt="Restaurant Interior" className="video-bg-img" />
           <div className="play-btn-wrapper">
             <button className="play-btn">
               <div className="play-triangle"></div>
