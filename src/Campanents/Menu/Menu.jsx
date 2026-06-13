@@ -1,10 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Menu.css';
-import wawlik from '../../assets/wawlik.png'
-import klipartz from '../../assets/klipartz.png'
+
+// Rasmlaringizni import qismi
+import wawlik from '../../assets/wawlik.png';
+import klipartz from '../../assets/klipartz.png';
+import pitsa from '../../assets/pitsa.png';
+ import burger from '../../assets/burger.png';
+ import asartiy from '../../assets/asartiy.png';
+ import lavash from '../../assets/lavash.png';
 
 
-  const Menu = () => {
+
+
+ const CounterAnimate = ({ targetPrice }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const end = parseFloat(targetPrice.replace('$', '')); 
+    
+    if (start === end) return;
+
+    let totalDuration = 1000; 
+    
+    let incrementTime = Math.max(Math.floor(totalDuration / (end * 10)), 20);
+    
+    let timer = setInterval(() => {
+      start += 0.5;  
+      if (start >= end) {
+        clearInterval(timer);
+        setCount(end);
+      } else {
+        setCount(start);
+      }
+    }, incrementTime);
+
+    return () => clearInterval(timer);
+  }, [targetPrice]);
+
+  return <span>${count.toFixed(2)}</span>;
+};
+
+const Menu = () => {
   const [activeCategory, setActiveCategory] = useState('All');
 
   const categories = [
@@ -12,22 +49,36 @@ import klipartz from '../../assets/klipartz.png'
     'Doner Kebab', 'Shish Kebab', 'French Fries Pizza', 'Desserts'
   ];
 
-   const popularDishes = Array(4).fill({
-    title: 'Barbecue Shish kebab Shashlik Skewer',
-    price: '$12.00',
-    rating: 5,
-    img: '/dish-example.png'  
-  });
 
-  const regularMenu = Array(12).fill({
-    title: 'Barbecue Shish kebab Shashlik Skewer',
-    price: '$12.00',
-    img: '/dish-example.png'
-  });
+  const popularDishes = [
+    { title: 'Barbecue Shish kebab Shashlik', price: '$12.00', rating: 5, img: klipartz},
+    { title: 'Pepperoni Fresh Italian Pizza', price: '$14.50', rating: 4, img: pitsa },
+    { title: 'Juicy Beef Burger Double Chese', price: '$9.99', rating: 5, img: burger },
+    { title: 'Turkish Traditional Doner Kebab', price: '$11.00', rating: 5, img: asartiy },
+  ];
+
+
+  const regularMenu = [
+    { title: 'klipartz', price: '$12.00', img: klipartz, category: 'klipartz' },
+    { title: 'Classic Cheese Pizza', price: '$15.00', img: pitsa, asartiy: 'asartiy' },
+    { title: 'Gourmet Hamburger Crispy', price: '$8.50', img: klipartz, category: 'Hamburger Kebab' },
+    { title: 'Special Shawarma Wrap', price: '$10.00', img: wawlik, category: 'Shawarma' },
+    { title: 'King Doner Kebab', price: '$13.20', img: klipartz, category: 'Doner Kebab' },
+    { title: 'Turkish Sweet Dessert', price: '$7.00', img: pitsa, category: 'Desserts' },
+    { title: 'Barbecue Shashlik Skewer', price: '$12.00', img: wawlik, category: 'Shish Kebab' },
+    { title: 'Mixed Pizza Pack', price: '$18.00', img: pitsa, lavash: 'lavash' },
+    { title: 'Double Beef Burger', price: '$11.00', img: klipartz, category: 'Hamburger Kebab' },
+    { title: 'Mini Shawarma Roll', price: '$6.50', img: wawlik, category: 'Shawarma' },
+    { title: 'Traditional Turk Kebab', price: '$14.00', img: klipartz, category: 'Turk Kebab' },
+    { title: 'Chocolate Baklava Plate', price: '$9.00', img: pitsa, category: 'Desserts' },
+  ];
+
+   const filteredMenu = activeCategory === 'All' 
+    ? regularMenu 
+    : regularMenu.filter(dish => dish.category === activeCategory);
 
   return (
     <div className="menu-page">
- 
        <section className="hero-section">
         <div className="container hero-container">
           <div className="hero-content">
@@ -40,6 +91,7 @@ import klipartz from '../../assets/klipartz.png'
             <button className="explore-btn">Explore Menu</button>
           </div>
           <div className="hero-image-wrapper">
+            <div className="hero-bg-circle"></div>
             <img src={wawlik} alt="Fine Dining" className="hero-food-img" />
           </div>
         </div>
@@ -60,15 +112,17 @@ import klipartz from '../../assets/klipartz.png'
 
         <div className="dishes-grid popular-grid">
           {popularDishes.map((dish, index) => (
-            <div className="dish-card" key={index}>
+            <div className="dish-card animate-card" key={index}>
               <div className="dish-img-container">
-                <img src={klipartz} alt={dish.title} />
+                <img src={dish.img} alt={dish.title} />
               </div>
               <h3 className="dish-name">{dish.title}</h3>
               <div className="dish-rating">
                 {'★'.repeat(dish.rating)}{'☆'.repeat(5 - dish.rating)}
               </div>
-              <span className="dish-price">{dish.price}</span>
+              <span className="dish-price">
+                <CounterAnimate targetPrice={dish.price} />
+              </span>
             </div>
           ))}
         </div>
@@ -77,7 +131,7 @@ import klipartz from '../../assets/klipartz.png'
        <section className="regular-menu-section container">
         <h2 className="section-title center">Our Regular Menu Pack</h2>
         
-         <div className="categories-filter">
+        <div className="categories-filter">
           {categories.map((category) => (
             <button
               key={category}
@@ -89,18 +143,97 @@ import klipartz from '../../assets/klipartz.png'
           ))}
         </div>
 
-         <div className="dishes-grid regular-grid">
-          {regularMenu.map((dish, index) => (
-            <div className="dish-card" key={index}>
+        <div className="dishes-grid regular-grid">
+          {filteredMenu.map((dish, index) => (
+            <div className="dish-card animate-card" key={index}>
               <div className="dish-img-container">
                 <img src={dish.img} alt={dish.title} />
               </div>
               <h3 className="dish-name">{dish.title}</h3>
-              <span className="dish-price">{dish.price}</span>
+              <span className="dish-price">
+                <CounterAnimate targetPrice={dish.price} />
+              </span>
             </div>
           ))}
         </div>
       </section>
+
+
+       <section className="testimony-section container">
+        <div className="section-title-wrapper center">
+          <span className="section-subtitle">Testimony</span>
+          <h2 className="section-title-dark">Happy Customers</h2>
+        </div>
+
+        <div className="testimony-grid">
+          {[1, 2, 3].map((item) => (
+            <div className="testimony-card" key={item}>
+              <div className="testimony-header">
+                 <img src={`/src/assets/client-${item}.png`} alt="Client" className="client-avatar" />
+                <div className="client-info">
+                  <h4>Maria</h4>
+                  <span>Chef / Food Critic</span>
+                </div>
+              </div>
+              <p className="testimony-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor sit iaculis 
+                in arcu. Vulputate morbi lacus, Vestibulum sapien varius scelerisque.
+              </p>
+              <div className="testimony-stars">★★★★★</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="slider-controls center-controls">
+          <button className="slider-btn">&lt;</button>
+          <button className="slider-btn active">&gt;</button>
+        </div>
+      </section>
+
+       <section className="news-section container">
+        <div className="section-title-wrapper center">
+          <span className="section-subtitle">News</span>
+          <h2 className="section-title-dark">Gericht Updates</h2>
+        </div>
+
+        <div className="news-grid">
+          {[1, 2, 3].map((item) => (
+            <div className="news-card animate-card" key={item}>
+              <div className="news-img-wrapper">
+                 <img src={`/src/assets/news-${item}.png`} alt="News Grill" className="news-img" />
+              </div>
+              <div className="news-content">
+                <h3 className="news-card-title">Tips For Prepping And Caring For Your Grill</h3>
+                <p className="news-desc">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate morbi 
+                  lacus, ipsum nulla elit scelerisque egestas mus in.
+                </p>
+                <div className="news-footer">
+                  <a href="#readmore" className="readmore-link">Read More</a>
+                  <span className="news-date">16 Apr 2026</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="view-more-container">
+          <button className="view-more-btn">View More</button>
+        </div>
+      </section>
+
+       <section className="restaurant-video-section">
+        <div className="video-overlay">
+           <img src="/src/assets/interior.jpg" alt="Restaurant Interior" className="video-bg-img" />
+          <div className="play-btn-wrapper">
+            <button className="play-btn">
+              <div className="play-triangle"></div>
+            </button>
+          </div>
+        </div>
+      </section>
+
+
     </div>
   );
 };
