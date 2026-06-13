@@ -235,6 +235,33 @@ const Menu = () => {
       </section>
 
 
+       <section className="instagram-gallery-section container">
+        <div className="gallery-info">
+          <span className="section-subtitle">Instagram</span>
+          <h2 className="section-title-dark">Photo Gallery</h2>
+          <p className="gallery-desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Volutpat mattis ipsum turpis elit elit scelerisque egestas mu.
+          </p>
+          <button className="view-more-btn">View More</button>
+        </div>
+
+        <div className="gallery-carousel">
+          {[1, 2, 3, 4].map((num) => (
+            <div className="gallery-card" key={num}>
+              <img 
+                src={`/src/assets/gallery-${num}.png`} 
+                alt={`Gallery ${num}`} 
+                className="gallery-img" 
+              />
+              <div className="instagram-overlay">
+                <i className="fab fa-instagram instagram-icon"></i>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
     </div>
   );
 };
