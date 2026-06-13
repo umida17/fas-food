@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './Menu.css';
+import wawlik from '../../assets/wawlik.png'
+import klipartz from '../../assets/klipartz.png'
 
-// Rasmlarni to'g'ri ulash uchun public papkasiga yoki assets'ga joylang. 
-// Bu yerda namuna uchun statik massiv tayyorladik.
-const Menu = () => {
+
+  const Menu = () => {
   const [activeCategory, setActiveCategory] = useState('All');
 
   const categories = [
@@ -11,12 +12,11 @@ const Menu = () => {
     'Doner Kebab', 'Shish Kebab', 'French Fries Pizza', 'Desserts'
   ];
 
-  // Taomlar ro'yxati (Rasmda ko'rsatilgan qismlar uchun)
-  const popularDishes = Array(4).fill({
+   const popularDishes = Array(4).fill({
     title: 'Barbecue Shish kebab Shashlik Skewer',
     price: '$12.00',
     rating: 5,
-    img: '/dish-example.png' // public papkasiga rasm tashlab nomi moslanadi
+    img: '/dish-example.png'  
   });
 
   const regularMenu = Array(12).fill({
@@ -27,8 +27,8 @@ const Menu = () => {
 
   return (
     <div className="menu-page">
-      {/* --- HERO SECTION --- */}
-      <section className="hero-section">
+ 
+       <section className="hero-section">
         <div className="container hero-container">
           <div className="hero-content">
             <span className="hero-subtitle">Chase The New Flavour</span>
@@ -40,8 +40,7 @@ const Menu = () => {
             <button className="explore-btn">Explore Menu</button>
           </div>
           <div className="hero-image-wrapper">
-            <div className="hero-bg-circle"></div>
-            <img src="/hero-food.png" alt="Fine Dining" className="hero-food-img" />
+            <img src={wawlik} alt="Fine Dining" className="hero-food-img" />
           </div>
         </div>
         <div className="scroll-hint">
@@ -50,8 +49,7 @@ const Menu = () => {
         </div>
       </section>
 
-      {/* --- POPULAR DISHES SECTION --- */}
-      <section className="popular-section container">
+       <section className="popular-section container">
         <div className="section-header">
           <h2 className="section-title">Popular Dishes</h2>
           <div className="slider-controls">
@@ -64,7 +62,7 @@ const Menu = () => {
           {popularDishes.map((dish, index) => (
             <div className="dish-card" key={index}>
               <div className="dish-img-container">
-                <img src={dish.img} alt={dish.title} />
+                <img src={klipartz} alt={dish.title} />
               </div>
               <h3 className="dish-name">{dish.title}</h3>
               <div className="dish-rating">
@@ -76,12 +74,10 @@ const Menu = () => {
         </div>
       </section>
 
-      {/* --- REGULAR MENU PACK SECTION --- */}
-      <section className="regular-menu-section container">
+       <section className="regular-menu-section container">
         <h2 className="section-title center">Our Regular Menu Pack</h2>
         
-        {/* Kategoriyalar filtri */}
-        <div className="categories-filter">
+         <div className="categories-filter">
           {categories.map((category) => (
             <button
               key={category}
@@ -93,8 +89,7 @@ const Menu = () => {
           ))}
         </div>
 
-        {/* Taomlar setkasi */}
-        <div className="dishes-grid regular-grid">
+         <div className="dishes-grid regular-grid">
           {regularMenu.map((dish, index) => (
             <div className="dish-card" key={index}>
               <div className="dish-img-container">
