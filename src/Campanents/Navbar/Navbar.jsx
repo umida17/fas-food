@@ -4,8 +4,8 @@ import './Navbar.css';
 import logo from '../../assets/Frame 64(1).png';
 
 const Navbar = () => {
-  // Navigatsiya linklarini massiv ko'rinishida yozsak, kodimiz toza va oson kengayadigan bo'ladi
-  const navLinks = [
+ 
+    const navLinks = [
     { path: '/menu', label: 'Menu' },
     { path: '/news', label: 'News' },
     { path: '/about', label: 'About Us' },
