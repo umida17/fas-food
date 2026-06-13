@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom'; 
 import Navbar from './Campanents/Navbar/Navbar';
 import Menu from './Campanents/Menu/Menu';
+import Footer from './Campanents/Footer/Footer';
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <div>
         <Navbar />
         <Menu/>
+        <Footer/>
        </div>
     </BrowserRouter>
   );

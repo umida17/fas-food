@@ -9,7 +9,7 @@ import pitsa from '../../assets/pitsa.png';
  import lavash from '../../assets/lavash.png';
 import stek from '../../assets/stek.png';
 import video from '../../assets/Video.png';
-import 1 from '../../assets/1.png';
+import rasm from '../../assets/1.png';
 
 
 
@@ -250,7 +250,7 @@ const Menu = () => {
           {[1, 2, 3, 4].map((num) => (
             <div className="gallery-card" key={num}>
               <img 
-                src={1} 
+                src={rasm} 
                 alt={`Gallery ${num}`} 
                 className="gallery-img" 
               />
