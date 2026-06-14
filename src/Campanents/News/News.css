@@ -1,99 +1,93 @@
- .gericht-news-section {
+ .news-page-container {
   background-color: #ffffff;
-  font-family: 'Cormorant Garamond', serif, sans-serif;
+  width: 100%;
   padding-bottom: 0;
 }
 
- .section-subtitle-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 8px;
+ .section-header {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-.section-mini-title {
+.subtitle {
+  font-family: 'Cormorant Garamond', serif;
   font-size: 18px;
   font-weight: 600;
-  color: #222222;
-  letter-spacing: 0.04em;
-}
-
-.gericht-main-title {
-  font-size: 42px;
-  font-weight: 700;
-  text-align: center;
   color: #242424;
-  margin: 0 0 45px 0;
-  letter-spacing: 0.03em;
+  display: block;
 }
 
-.gericht-main-title.red-text {
+.spoon-line {
+  width: 40px;
+  height: 2px;
+  background-color: #b7202e;
+  margin: 4px auto 12px auto;
+}
+
+.main-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: #242424;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.main-title.red-title {
   color: #b7202e;
 }
 
- .testimony-container {
-  padding: 80px 24px 40px 24px;
+ .testimony-section {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 60px 24px 20px 24px;
 }
 
 .testimony-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-  margin-bottom: 30px;
+  gap: 24px;
 }
 
 .testimony-card {
-  background: #fcfcfc;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 35px 25px;
-  border-radius: 4px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
-  transition: all 0.3s ease;
-}
-
-.testimony-card.highlighted {
-  background: #ffffff;
-  border-color: rgba(183, 32, 46, 0.15);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  background: #fdfdfd;
+  border: 1px solid #f0f0f0;
+  padding: 30px 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
 .customer-name {
   font-size: 20px;
-  color: #242424;
+  color: #b7202e;
   margin: 0 0 15px 0;
   font-weight: 600;
 }
 
-.customer-review {
+.customer-text {
   font-size: 14px;
   color: #666666;
   line-height: 1.6;
-  font-style: italic;
   margin: 0 0 20px 0;
 }
 
-.testimony-card-meta {
+.card-footer-meta {
   display: flex;
   justify-content: space-between;
   font-size: 12px;
   color: #999999;
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid #f5f5f5;
   padding-top: 12px;
 }
 
- .slider-controls {
+ .slider-arrows {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
+  gap: 12px;
+  margin-top: 25px;
 }
 
-.slider-arrow {
-  width: 35px;
-  height: 35px;
+.arrow-btn {
+  width: 36px;
+  height: 36px;
   border: 1px solid #b7202e;
   background: transparent;
   color: #b7202e;
@@ -102,215 +96,189 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.2s;
 }
 
-.slider-arrow:hover {
+.arrow-btn:hover {
   background-color: #b7202e;
   color: #ffffff;
 }
 
- .center-divider-badge {
+ .center-divider {
   display: flex;
   justify-content: center;
   margin: 40px 0;
 }
 
-.circle-badge-inner {
-  width: 50px;
-  height: 50px;
+.circle-logo {
+  width: 60px;
+  height: 60px;
   border: 1px dashed #b7202e;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 9px;
-  color: #b7202e;
-  font-weight: bold;
-  letter-spacing: 1px;
 }
 
- .updates-container {
-  padding: 40px 24px 80px 24px;
+.logo-text {
+  font-size: 8px;
+  color: #b7202e;
+  font-weight: bold;
+  text-align: center;
+}
+
+ .updates-section {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 20px 24px 60px 24px;
 }
 
 .updates-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  margin-bottom: 40px;
 }
 
 .update-card {
   background: #ffffff;
-  border-radius: 8px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
-  transition: transform 0.3s ease;
 }
 
-.update-card:hover {
-  transform: translateY(-5px);
-}
-
-.update-img-box {
+.card-image-box {
   width: 100%;
   height: 240px;
-  background-color: #f0f0f0;
+  background-color: #eaeaea;
   position: relative;
-  overflow: hidden;
 }
 
-.update-actual-img {
+.update-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.update-img-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  text-align: center;
+.image-placeholder-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 13px;
-  color: #999999;
-  background: #eaeaea;
-  border-bottom: 2px solid #b7202e;
+  color: #aaaaaa;
 }
 
-.update-card-body {
-  padding: 24px;
+.card-body {
+  padding: 20px;
 }
 
-.update-card-title {
+.card-title {
   font-size: 18px;
   color: #242424;
-  line-height: 1.4;
-  margin: 0 0 12px 0;
+  margin: 0 0 10px 0;
   font-weight: 600;
+  line-height: 1.4;
 }
 
-.update-card-desc {
+.card-desc {
   font-size: 13.5px;
   color: #666666;
   line-height: 1.6;
-  margin: 0 0 24px 0;
+  margin: 0 0 20px 0;
 }
 
-.update-card-footer {
+.card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.read-more-link {
+.read-more {
   color: #b7202e;
   text-decoration: none;
   font-weight: 600;
   font-size: 14px;
-  border-bottom: 1px solid #b7202e;
-  padding-bottom: 2px;
 }
 
-.update-date {
+.post-date {
   font-size: 12px;
   color: #999999;
 }
 
- .view-more-action {
+ .view-more-container {
   display: flex;
   justify-content: center;
+  margin-top: 35px;
 }
 
-.gericht-view-more-btn {
+.view-more-btn {
   background: transparent;
   color: #242424;
   border: 1px solid #b7202e;
-  padding: 10px 28px;
+  padding: 10px 30px;
   font-size: 14px;
   font-weight: 600;
+  border-radius: 4px;
   cursor: pointer;
-  border-radius: 25px;
-  transition: all 0.3s ease;
+  transition: all 0.3s;
 }
 
-.gericht-view-more-btn:hover {
-  background: #b7202e;
+.view-more-btn:hover {
+  background-color: #b7202e;
   color: #ffffff;
 }
 
- .restaurant-video-banner {
+ .bottom-video-banner {
   width: 100%;
-  height: 500px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop');
+  height: 450px;
+  background-color: #111111;
+   background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; 
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.play-circular-btn {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: transparent;
+.play-btn-circle {
+  width: 65px;
+  height: 65px;
   border: 1px solid #ffffff;
-  cursor: pointer;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
-.play-triangle {
+.play-icon-triangle {
   width: 0;
   height: 0;
-  border-top: 10px solid transparent;
-  border-left: 16px solid #ffffff;
-  border-bottom: 10px solid transparent;
+  border-top: 8px solid transparent;
+  border-left: 14px solid #ffffff;
+  border-bottom: 8px solid transparent;
   margin-left: 4px;
 }
 
-.play-circular-btn:hover {
-  transform: scale(1.1);
-  background: rgba(255, 255, 255, 0.1);
+.play-btn-circle:hover {
+  transform: scale(1.08);
 }
 
-   
-@media (max-width: 992px) {
+   @media (max-width: 992px) {
   .testimony-grid, .updates-grid {
-    grid-template-columns: repeat(2, 1fr);  
-    gap: 20px;
-  }
-  .gericht-main-title {
-    font-size: 34px;
-  }
-  .restaurant-video-banner {
-    height: 380px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 600px) {
   .testimony-grid, .updates-grid {
-    grid-template-columns: 1fr;  
+    grid-template-columns: 1fr;
   }
-  .gericht-main-title {
-    font-size: 28px;
-    margin-bottom: 30px;
+  .main-title {
+    font-size: 30px;
   }
-  .testimony-container, .updates-container {
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
-  .restaurant-video-banner {
-    height: 280px;
-    background-attachment: scroll; 
+  .bottom-video-banner {
+    height: 300px;
   }
 }
