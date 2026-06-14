@@ -1,94 +1,153 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './News.css';
 
 const News = () => {
-   const newsData = [
+   const [testimonyIndex, setTestimonyIndex] = useState(0);
+
+   const testimonies = [
     {
       id: 1,
-      image: '/src/assets/news-1.png',
-      title: 'Tips For Prepping And Caring For Your Grill',
-      date: '16 Apr 2026',
-      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate morbi lacus, ipsum nulla elit scelerisque egestas mus in.'
+      name: "Maria",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate morbi lacus, ipsum nulla elit scelerisque egestas mus in.",
+      date: "14/05/2026",
+      likes: 12,
+      views: 234
     },
     {
       id: 2,
-      image: '/src/assets/news-2.png',
-      title: 'The Secrets Behind Creating Our Famous Eat Turkish Sauce',
-      date: '12 May 2026',
-      desc: 'Aliquam erat volutpat. Integer sit amet magna a velit ullamcorper varius vel id tortors. Duis pretium sodales dictum.'
+      name: "John Doe",
+      text: "Quisque volutpat mattis tempus urna, sit amet scelerisque egestas mus in. Integer sit amet magna a velit ullamcorper varius.",
+      date: "28/05/2026",
+      likes: 45,
+      views: 512
     },
     {
       id: 3,
-      image: '/src/assets/news-3.png',
-      title: 'Why Traditional Charcoal Gives The Best Kebab Flavor',
-      date: '28 May 2026',
-      desc: 'Phasellus finibus enim nec ante varius, eget facilisis diam convallis. Ut elementum tristique interdum nisl sed nisl.'
-    },
-    {
-      id: 4,
-      image: '/src/assets/news-4.png',
-      title: '5 Healthy Mediterranean Side Dishes You Must Try',
-      date: '02 Jun 2026',
-      desc: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras ac ante sit amet diam.'
-    },
-    {
-      id: 5,
-      image: '/src/assets/news-5.png',
-      title: 'How To Perfect Your Homemade Shish Kebab Cooking Time',
-      date: '10 Jun 2026',
-      desc: 'Curabitur imperdiet, diam non finibus gravida, diam ligula efficitur magna, ut hendrerit magna erat sit amet massa.'
-    },
-    {
-      id: 6,
-      image: '/src/assets/news-6.png',
-      title: 'Our Restaurant Just Expanded Its Outdoor Grill Area',
-      date: '14 Jun 2026',
-      desc: 'Sed auctor, magna a sodales interdum, ante nulla varius lectus, id venenatis ligula erat rhoncus ex. Proin feugiat.'
+      name: "Anny Lee",
+      text: "Phasellus finibus enim nec ante varius, eget facilisis diam convallis. Ut elementum tristique interdum nisl sed nisl.",
+      date: "02/06/2026",
+      likes: 8,
+      views: 198
     }
   ];
 
+   const updatesData = [
+    {
+      id: 1,
+      image: "",  
+      title: "Tips For Prepping And Caring For Your Grill",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate morbi lacus, ipsum nulla elit scelerisque egestas mus in.",
+      date: "16 Apr 2026"
+    },
+    {
+      id: 2,
+      image: "",  
+      title: "Tips For Prepping And Caring For Your Grill",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate morbi lacus, ipsum nulla elit scelerisque egestas mus in.",
+      date: "16 Apr 2026"
+    },
+    {
+      id: 3,
+      image: "",  
+      title: "Tips For Prepping And Caring For Your Grill",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate morbi lacus, ipsum nulla elit scelerisque egestas mus in.",
+      date: "16 Apr 2026"
+    }
+  ];
+
+   const nextTestimony = () => {
+    setTestimonyIndex((prev) => (prev + 1) % testimonies.length);
+  };
+
+  const prevTestimony = () => {
+    setTestimonyIndex((prev) => (prev - 1 + testimonies.length) % testimonies.length);
+  };
+
   return (
-    <div className="news-page-wrapper">
-       <div className="news-hero-banner">
-        <div className="news-hero-overlay">
-          <span className="news-subtitle">Latest Updates</span>
-          <h1 className="news-page-title">Gericht Updates & Stories</h1>
+    <div className="gericht-news-section">
+      
+       <section className="testimony-container">
+        <div className="section-subtitle-wrapper">
+          <span className="section-mini-title">Testimony</span>
+          <div className="spoon-decorator"></div>
+        </div>
+        <h2 className="gericht-main-title">Happy Customers</h2>
+
+        <div className="testimony-slider-wrapper">
+          <div className="testimony-grid">
+             {testimonies.map((item, idx) => (
+              <div 
+                key={item.id} 
+                className={`testimony-card ${idx === testimonyIndex ? 'highlighted' : ''}`}
+              >
+                <h4 className="customer-name">{item.name}</h4>
+                <p className="customer-review">"{item.text}"</p>
+                <div className="testimony-card-meta">
+                  <span>📅 {item.date}</span>
+                  <span>❤️ {item.likes + idx * 5}</span> 
+                  <span>👁️ {item.views + idx * 12}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+           <div className="slider-controls">
+            <button className="slider-arrow prev" onClick={prevTestimony}>&lt;</button>
+            <button className="slider-arrow next" onClick={nextTestimony}>&gt;</button>
+          </div>
+        </div>
+      </section>
+
+       <div className="center-divider-badge">
+        <div className="circle-badge-inner">
+          <span>MENU</span>
         </div>
       </div>
 
-       <div className="container news-page-container">
-        <div className="news-main-grid">
-          {newsData.map((blog) => (
-            <article className="news-page-card" key={blog.id}>
-              <div className="news-page-img-holder">
-                <img src={blog.image} alt={blog.title} className="news-page-img" />
-                <span className="news-page-badge">Eat Turkish</span>
+       <section className="updates-container">
+        <div className="section-subtitle-wrapper">
+          <span className="section-mini-title">News</span>
+          <div className="spoon-decorator"></div>
+        </div>
+        <h2 className="gericht-main-title red-text">Gericht Updates</h2>
+
+        <div className="updates-grid">
+          {updatesData.map((post, index) => (
+            <article className="update-card" key={post.id}>
+              <div className="update-img-box">
+                {post.image ? (
+                  <img src={post.image} alt={post.title} className="update-actual-img" />
+                ) : (
+                  <div className="update-img-placeholder">
+                    <span>Rasm joyi (Rasm yo'lini kodga yozing)</span>
+                  </div>
+                )}
               </div>
-              <div className="news-page-body">
-                <div className="news-page-meta">
-                  <span className="news-page-date">📅 {blog.date}</span>
-                  <span className="news-page-author">✍️ By Admin</span>
-                </div>
-                <h3 className="news-page-card-title">{blog.title}</h3>
-                <p className="news-page-desc">{blog.desc}</p>
-                <div className="news-page-footer">
-                  <a href={`#readmore-${blog.id}`} className="news-readmore-btn">
-                    Read Story <span className="arrow-icon">→</span>
-                  </a>
+              <div className="update-card-body">
+                <h3 className="update-card-title">{post.title}</h3>
+                <p className="update-card-desc">{post.desc}</p>
+                <div className="update-card-footer">
+                  <a href={`#story-${post.id}`} className="read-more-link">Read More</a>
+                  <span className="update-date">{post.date}</span>
                 </div>
               </div>
             </article>
           ))}
         </div>
 
-         <div className="news-pagination">
-          <button className="page-nav-btn disabled">&lt;</button>
-          <button className="page-nav-btn active">1</button>
-          <button className="page-nav-btn">2</button>
-          <button className="page-nav-btn">3</button>
-          <button className="page-nav-btn">&gt;</button>
+        <div className="view-more-action">
+          <button className="gericht-view-more-btn">View More</button>
+        </div>
+      </section>
+
+       <div className="restaurant-video-banner">
+        <div className="video-play-overlay">
+          <button className="play-circular-btn" aria-label="Play Video">
+            <div className="play-triangle"></div>
+          </button>
         </div>
       </div>
+
     </div>
   );
 };
