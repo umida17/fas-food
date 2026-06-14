@@ -1,0 +1,244 @@
+/* --- NEWS SAHIFA FON VA UMUMIY STRUKTURASI --- */
+.news-page-wrapper {
+  background-color: #fafafa;
+  min-height: 100vh;
+}
+
+/* Sahifa tepasidagi katta qizil banner */
+.news-hero-banner {
+  width: 100%;
+  height: 250px;
+  background-color: #b7202e;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.news-hero-overlay {
+  text-align: center;
+  color: #ffffff;
+  padding: 0 20px;
+}
+
+.news-subtitle {
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.news-page-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Kontent konteyneri */
+.news-page-container {
+  padding: 80px 24px;
+}
+
+/* 3 qatorli Grid tizimi */
+.news-main-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  margin-bottom: 60px;
+}
+
+/* Yangilik kartasi */
+.news-page-card {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+}
+
+.news-page-img-holder {
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+  position: relative;
+  background-color: #e5e5e5;
+}
+
+.news-page-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.news-page-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background-color: #b7202e;
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Karta tanasi */
+.news-page-body {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.news-page-meta {
+  display: flex;
+  gap: 15px;
+  font-size: 13px;
+  color: #888888;
+  margin-bottom: 12px;
+}
+
+.news-page-card-title {
+  font-size: 19px;
+  color: #222222;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  transition: color 0.3s ease;
+}
+
+.news-page-desc {
+  font-size: 14px;
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  /* Matn ko'p bo'lsa 3 qatorda kesib qo'yadi */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-page-footer {
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px solid #f5f5f5;
+}
+
+.news-readmore-btn {
+  color: #b7202e;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.3s ease;
+}
+
+/* --- HOVER EFFEKTLARI --- */
+.news-page-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(183, 32, 46, 0.08);
+  border-color: rgba(183, 32, 46, 0.1);
+}
+
+.news-page-card:hover .news-page-img {
+  transform: scale(1.07);
+}
+
+.news-page-card:hover .news-page-card-title {
+  color: #b7202e;
+}
+
+.news-page-card:hover .news-readmore-btn {
+  gap: 12px; 
+}
+
+/* Pagination (Sahifalar) */
+.news-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+  color: #333;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.page-nav-btn:hover:not(.disabled) {
+  background-color: #b7202e;
+  color: #ffffff;
+  border-color: #b7202e;
+}
+
+.page-nav-btn.active {
+  background-color: #b7202e;
+  color: #ffffff;
+  border-color: #b7202e;
+}
+
+.page-nav-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+ 
+ @media (max-width: 1024px) {
+  .news-main-grid {
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 25px;
+  }
+  .news-page-title {
+    font-size: 36px;
+  }
+}
+
+ @media (max-width: 768px) {
+  .news-page-container {
+    padding: 50px 20px;
+  }
+  .news-hero-banner {
+    height: 200px;
+  }
+  .news-page-title {
+    font-size: 30px;
+  }
+  .news-page-card-title {
+    font-size: 17px;
+  }
+}
+
+ @media (max-width: 576px) {
+  .news-main-grid {
+    grid-template-columns: 1fr;  
+  }
+  .news-hero-banner {
+    height: 160px;
+  }
+  .news-page-title {
+    font-size: 24px;
+  }
+  .news-subtitle {
+    font-size: 13px;
+  }
+  .news-page-img-holder {
+    height: 200px;  
+  }
+}
