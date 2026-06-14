@@ -163,11 +163,6 @@
   }
 }
 
- @shadow {
-  .hamburger {
-    display: none;
-  }
-}
 .hamburger {
   display: none;
 }
