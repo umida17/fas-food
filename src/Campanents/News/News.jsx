@@ -1,109 +1,101 @@
 import React, { useState } from 'react';
 import './News.css';
+import klipar from '../../assets/klipartz.png';
 
 const News = () => {
-  // Slayder tugmalari bosilganda raqamlar o'zgarishi uchun holat (state)
-  const [slide, setSlide] = useState(0);
-
-  // Rasmdagi 3 ta "Maria" kartasi va ularning ostidagi dinamik raqamlar
-  const testimonies = [
-    { id: 1, name: "Maria", date: "14 Apr 2026", likes: 12, views: 234 },
-    { id: 2, name: "Maria", date: "15 Apr 2026", likes: 19, views: 310 },
-    { id: 3, name: "Maria", date: "16 Apr 2026", likes: 25, views: 420 }
+  const categories = [
+    "All", "KEBABS", "PIDES", "BURGERS", "OTHER DISHES", "SIDES", "DRINKS", "DESSERTS", "MEAL DEALS"
   ];
 
-  // Slayder tugmalari bosilganda raqamlarni o'zgartirish funksiyasi
-  const handleNext = () => setSlide(prev => (prev + 1) % testimonies.length);
-  const handlePrev = () => setSlide(prev => (prev - 1 + testimonies.length) % testimonies.length);
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const baseMenuProducts = [
+    { id: 1, name: "Barbecue Shish kebab Shashlik Skewer", basePrice: 12.00 },
+    { id: 2, name: "Barbecue Shish kebab Shashlik Skewer", basePrice: 12.00 },
+    { id: 3, name: "Barbecue Shish kebab Shashlik Skewer", basePrice: 12.00 },
+    { id: 4, name: "Barbecue Shish kebab Shashlik Skewer", basePrice: 12.00 },
+    { id: 5, name: "Barbecue Shish kebab Shashlik Skewer", basePrice: 12.00 },
+    { id: 6, name: "Barbecue Shish kebab Shashlik Skewer", basePrice: 12.00 },
+    { id: 7, name: "Barbecue Shish kebab Shashlik Skewer", basePrice: 12.00 },
+    { id: 8, name: "Barbecue Shish kebab Shashlik Skewer", basePrice: 12.00 },
+    { id: 9, name: "Barbecue Shish kebab Shashlik Skewer", basePrice: 12.00 },
+    { id: 10, name: "Barbecue Shish kebab Shashlik Skewer", basePrice: 12.00 },
+  ];
+
+  const getMultiplier = (category) => {
+    switch (category) {
+      case "KEBABS": return 1.2;
+      case "PIDES": return 0.9;
+      case "BURGERS": return 0.8;
+      case "DRINKS": return 0.4;
+      default: return 1.0;
+    }
+  };
+
+  const multiplier = getMultiplier(activeCategory);
 
   return (
-    <div className="news-page-container">
-      
-      {/* ================= TESTIMONY SECTION ================= */}
-      <section className="testimony-section">
-        <div className="section-header">
-          <span className="subtitle">Testimony</span>
-          <div className="spoon-line"></div>
-          <h2 className="main-title">Happy Customers</h2>
-        </div>
-
-        <div className="testimony-grid">
-          {testimonies.map((item) => (
-            <div className="testimony-card" key={item.id}>
-              <h3 className="customer-name">{item.name}</h3>
-              <p className="customer-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Vulputate morbi lacus, ipsum nulla elit scelerisque egestas mus in.
-              </p>
-              <div className="card-footer-meta">
-                <span className="meta-item">📅 {item.date}</span>
-                {/* Slayder bosilganda raqamlar o'zgarib turadi */}
-                <span className="meta-item">❤️ {item.likes + slide}</span>
-                <span className="meta-item">👁️ {item.views + (slide * 5)}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Rasmdagi slayder tugmalari */}
-        <div className="slider-arrows">
-          <button className="arrow-btn" onClick={handlePrev}>&lt;</button>
-          <button className="arrow-btn" onClick={handleNext}>&gt;</button>
-        </div>
-      </section>
-
-      {/* Rasmdagi o'rtadagi dumaloq pichoq-vilka belgisi */}
-      <div className="center-divider">
-        <div className="circle-logo">
-          <span className="logo-text">BITE DELIGHT</span>
-        </div>
-      </div>
-
-      {/* ================= GERICHT UPDATES SECTION ================= */}
-      <section className="updates-section">
-        <div className="section-header">
-          <span className="subtitle">News</span>
-          <div className="spoon-line"></div>
-          <h2 className="main-title red-title">Gericht Updates</h2>
-        </div>
-
-        <div className="updates-grid">
-          {[1, 2, 3].map((id) => (
-            <article className="update-card" key={id}>
-              <div className="card-image-box">
-                {/* Rasm yo'lini shu yerga qo'yasiz, hozircha bo'sh joy qoldirildi */}
-                <img src="" alt="" className="update-img" />
-                <div className="image-placeholder-text">Rasm joyi</div>
-              </div>
-              <div className="card-body">
-                <h3 className="card-title">Tips For Prepping And Caring For Your Grill</h3>
-                <p className="card-desc">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                  Vulputate morbi lacus, ipsum nulla elit scelerisque egestas mus in.
-                </p>
-                <div className="card-footer">
-                  <a href={`#read-${id}`} className="read-more">Read More</a>
-                  <span className="post-date">16 Apr 2026</span>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="view-more-container">
-          <button className="view-more-btn">View More</button>
-        </div>
-      </section>
-
-      {/* ================= BOTTOM LARGE IMAGE/VIDEO BANNER ================= */}
-      <div className="bottom-video-banner">
-        <div className="play-button-overlay">
-          <div className="play-btn-circle">
-            <div className="play-icon-triangle"></div>
+    <div className="regular-menu-page">
+      <div className="menu-page-layout">
+        
+        <aside className="menu-sidebar-panel">
+          <h2 className="sidebar-main-heading">Our Regular Menu Pack</h2>
+          
+          <div className="sidebar-buttons-list">
+            {categories.map((cat, idx) => (
+              <button 
+                key={idx}
+                className={`sidebar-nav-btn ${activeCategory === cat ? 'active-cat' : ''}`}
+                onClick={() => setActiveCategory(cat)}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
-        </div>
-      </div>
+        </aside>
 
+        <main className="menu-products-display">
+          <div className="products-two-columns-grid">
+            {baseMenuProducts.map((product, index) => {
+              const dynamicPrice = (product.basePrice * multiplier + (index * 0.5)).toFixed(2);
+              
+              return (
+                <div className="single-product-card" key={product.id}>
+                  
+                  {/* Maketdagi 'BITE DELIGHT' aylana shtampi faqat 5-karta (index === 4) chetida chiqadi */}
+                  {index === 4 && (
+                    <div className="floating-circular-badge">
+                      <div className="rotating-text-svg">
+                        <svg viewBox="0 0 100 100" width="90" height="90">
+                          <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="transparent" />
+                          <text fill="#b7202e" fontSize="8.5" fontWeight="bold" letterSpacing="2.5">
+                            <textPath href="#circlePath">BITE DELIGHT IN EVERY BITE • </textPath>
+                          </text>
+                        </svg>
+                        <div className="inner-fork-spoon">🍴</div>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="product-img-container">
+                    <img 
+                      src={klipar}
+                      alt={product.name} 
+                      className="product-actual-image" 
+                    />
+                  </div>
+                  
+                  <div className="product-details-content">
+                    <h3 className="product-title-name">{product.name}</h3>
+                    <span className="product-price-tag">${dynamicPrice}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </main>
+
+      </div>
     </div>
   );
 };
