@@ -17,7 +17,6 @@ const App = () => {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Navigate to="/menu" />} />
-            
             <Route path="/menu" element={<Menu />} />
             <Route path="/news" element={<News />} />  
             <Route path="/about" element={<About />} />
