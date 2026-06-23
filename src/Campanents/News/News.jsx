@@ -62,7 +62,6 @@ const News = () => {
               return (
                 <div className="single-product-card" key={product.id}>
                   
-                  {/* Maketdagi 'BITE DELIGHT' aylana shtampi faqat 5-karta (index === 4) chetida chiqadi */}
                   {index === 4 && (
                     <div className="floating-circular-badge">
                       <div className="rotating-text-svg">
