@@ -50,7 +50,9 @@ const Footer = () => {
       </div>
 
        <div className="footer-copyright">
+
         <p>2026 Pop online. All Rights reserved.</p>
+        
       </div>
     </footer>
   );
