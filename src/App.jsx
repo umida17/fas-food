@@ -14,7 +14,6 @@ const App = () => {
     <BrowserRouter> 
       <div className="app-container">
         <Navbar />
-        
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Navigate to="/menu" />} />
